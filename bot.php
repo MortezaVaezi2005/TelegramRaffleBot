@@ -1,62 +1,25 @@
 <?php
-date_default_timezone_set("Asia/Tehran");
-include "tempDatasManager.php";
-$botApiKey = "Bot API Key"; //Bot Api Key
-$admins = ['Your Id']; //Admins Arrays
-$chs = array(
-    array(
-        "id"=>'-1002090427187', // Channel Id
-        "title"=>"Wish Time", // Channel Username
-        "link"=>'https://t.me/WishTimem' // Channel Link
-        ),
-    array(
-        "id"=>'-1002090427187', // Channel Id
-        "title"=>"Wish Time", // Channel Username
-        "link"=>'https://t.me/WishTimem' // Channel Link
-        )
-    );
 /* 
 DEVELOPED BY MortezaVaei
 Telegram Username : @MortezaVaezi_ir,
 Site URL : mortezavaezi.ir
 */
-function bot($method, $datas = []) {
-    global $botApiKey;
-    $url = "https://api.telegram.org/bot" . $botApiKey . "/" . $method;
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $datas);
-    $res = curl_exec($ch);
-    if (curl_error($ch)) {
-        var_dump(curl_error($ch));
-    } else {
-        return json_decode($res);
-    }
+
+date_default_timezone_set("Asia/Tehran");
+include 'vendor/autoload.php';
+include "tempDatasManager.php";
+include "functions.php";
+if (!file_exists("setting.json") || empty(file_get_contents('setting.json'))) {
+    header("location:install.php");
+    die();
 }
-
-function checkMembership($chatId, $userId) {
-    $method = 'getChatMember';
-    $params = [
-        'chat_id' => $chatId,
-        'user_id' => $userId
-    ];
-
-    $result = bot($method, $params);
-
-    if ($result && isset($result->ok) && $result->ok === true) {
-        return $result->result->status;
-    } else {
-        return false;
-    }
-}
-/* 
-DEVELOPED BY MortezaVaei
-Telegram Username :  @MortezaVaezi_ir,
-Site URL : mortezavaezi.ir
-*/
 $settings = new TempDatasManager('setting.json');
 $usersDB = new TempDatasManager('participants.json');
+$MadelineProto = new \danog\MadelineProto\API('session.madeline');
+$MadelineProto->start();
+$botApiKey = $settings->getArrayByKey('botToken')['botToken'];
+$admins = $settings->getArrayByKey('admins');
+$chs = $settings->getArrayByKey('channels');
 $update = json_decode(file_get_contents('php://input'));
 $off = false;
 $botStatus = $settings->getArrayByKey('status');
@@ -77,7 +40,7 @@ if(isset($update->message) ){
                 'chat_id' => $chat->id,
                 'text' => "سلام، به ربات خودتان خوش آمدید.",
                 'reply_to_message_id'=>$message->message_id,
-                'reply_markup'=>json_encode(['keyboard' => [[ '⚙️ وضعیت شرکت کنندگان ⚙️', '🌪️ قرعه کشی 🌪️'],[ 'روشن', 'خاموش'],['🗑️ پاکسازی لیست شرکت کنندگان 🗑️']],
+                'reply_markup'=>json_encode(['keyboard' => [[ '⚙️ وضعیت شرکت کنندگان ⚙️'],[ '🌪️ قرعه کشی معمولی 🌪️', '📬 قرعه کشی کامنتی 📬'],[ 'روشن', 'خاموش'],['🗑️ پاکسازی لیست شرکت کنندگان 🗑️']],
             	'resize_keyboard'=>true])]);   
         }elseif($message->text == 'روشن' ){
             $settings->updateArrayByKey(['status'=>'on'],'status');
@@ -93,15 +56,21 @@ if(isset($update->message) ){
                 'reply_to_message_id'=>$message->message_id]);
         }elseif($message->text == '⚙️ وضعیت شرکت کنندگان ⚙️'){
             $datas = $usersDB->getAllData();
-            $count = count($datas);
-            $lastStartTime = date('H:i Y/m/d', end($datas)['timestamp']);
+            if($datas != null){
+                $count = count($datas);
+            }else{
+                $count = 0;
+            }
+            $timestamp = time();
+            if($datas != null && isset(end($datas)['timestamp'])) $timestamp = end($datas)['timestamp'];
+            $lastStartTime = date('H:i Y/m/d', $timestamp);
             $date = date('Y/m/d H:i');
             bot('sendMessage', [
                 'chat_id' => $chat->id,
                 'text' => "تعداد شرکت کنندگان:  {$count}\nثبت نام آخرین شرکت کننده : {$lastStartTime}\n\n\nTime : {$date}",
                 'reply_to_message_id'=>$message->message_id]);
-        }elseif($message->text == '🌪️ قرعه کشی 🌪️'){
-            $LotteryPageUrl = str_replace("bot.php","",$_SERVER['SCRIPT_URI'])."lottery.php";
+        }elseif($message->text == '🌪️ قرعه کشی معمولی 🌪️'){
+            $LotteryPageUrl = str_replace("bot.php","",$_SERVER['SCRIPT_URI'])."registrationLottery.php";
             $count = count($usersDB->getAllData());
             if($count>=2){
                 $chBt[] = [["text"=>"ورود به صفحه قرعه کشی","url"=>$LotteryPageUrl]];
@@ -131,12 +100,66 @@ if(isset($update->message) ){
                   ])
             ]);
 
+        }elseif($message->text == '📬 قرعه کشی کامنتی 📬'){
+                bot('sendMessage', [
+                    'chat_id' => $chat->id,
+                    'reply_to_message_id'=>$message->message_id,
+                    'text' => "📇 راهنمای قرعه کشی کامنتی 📇\n\n\n💠 ابتدا مطمئن شوید که اکانت متصل به بات، در کانال مورد نظر عضو است و به محتوای آن دسترسی دارد.\n\n💠سپس پست مورد نظر که حاوی کامنت های قرعه کشی است را به ربات فوروارد کنید.\n\n💠 بعد از فوروارد، درصورت انجام درست مراحل بالا، ربات لینک ورود به صفحه قرعه کشی کامنتی را برای شما ارسال خواهد کرد."
+                ]);
+        }elseif(isset($message->forward_origin)){
+            $forward = $message->forward_origin;
+            if($forward->type == 'channel'){
+                if(isset($forward->chat->username)){
+                    try {
+                       $repliers = $MadelineProto->messages->getReplies(peer:"@{$forward->chat->username}", msg_id: $forward->message_id,limit:50)['messages'];
+                        if (count($repliers) > 0) {
+                            $offset_id =   end($repliers)['id']; 
+                            while (true) {
+                                $result = $MadelineProto->messages->getReplies(peer:"@{$forward->chat->username}", msg_id: $forward->message_id,limit:100,offset_id: $offset_id)['messages'];
+                            
+                                if (isset($result) && count($result) > 0) {
+                                    $repliers = array_merge($result,$repliers);
+                                    $offset_id = end($result)['id'];
+                                } else {
+                                    break;
+                                }
+                            }
+                        }
+                        $fromIds = array_values(array_unique(array_column($repliers, 'from_id')));
+                        $LotteryPageUrl = str_replace("bot.php","",$_SERVER['SCRIPT_URI'])."commentLottery.php?".http_build_query(['fromIds' => $fromIds]);
+                        $count = count($fromIds);
+                        if($count>=2){
+                            bot('sendMessage', [
+                                'chat_id' => $chat->id,
+                                'reply_to_message_id'=>$message->message_id,
+                                'parse_mode'=>'HTML', 
+                                'text' => "برای ورود به صفحه قرعه کشی کامنتی روی لینک زیر کلیک کنید👇👇👇\n\n<a href='{$LotteryPageUrl}'>👨‍💻👨‍💻ورود به صفحه قرعه کشی کامنتی👨‍💻👨‍💻</a>",
+                            ]);
+                        }else{
+                            bot('sendMessage', [
+                                'chat_id' => $chat->id,
+                                'reply_to_message_id'=>$message->message_id,
+                                'text' => "حداقل تعداد افرادی که کامنت گذاشته اند باید 2 نفر باشد."
+                            ]);
+                        }
+                    } catch (\danog\MadelineProto\RPCErrorException $e) {
+                        $MadelineProto->logger($e);
+                }
+                }else{
+                    bot('sendMessage', [
+                    'chat_id' => $chat->id,
+                    'reply_to_message_id'=>$message->message_id,
+                    'text' => ' امکان قرعه کشی میان کامنت های این پست وجود ندارد😞🥀'
+                    ]);   
+                }
+            }else{
+                 bot('sendMessage', [
+                    'chat_id' => $chat->id,
+                    'reply_to_message_id'=>$message->message_id,
+                    'text' => "⚠️⚠️⚠️\n\nقرعه کشی کامنتی تنها برای پیام هایی که در چنل ها ارسال شده اند، امکان پذیر است!"
+                ]);   
+            }
         }
-/* 
-DEVELOPED BY MortezaVaei 
-Telegram Username : @MortezaVaezi_ir,
-Site URL : mortezavaezi.ir
-*/
     }else{
         if($off == true){
             bot('sendMessage', ['chat_id' => $chat->id, 'text' =>'ربات توسط ادمین خاموش شده است.
@@ -166,11 +189,6 @@ Site URL : mortezavaezi.ir
                  لطفا اخبار قرعه کشی را از کانال دنبال کنید، تا از نتیجه مطلع شوید.",
                 'reply_to_message_id'=>$message->message_id]);
             }   
-/* 
-DEVELOPED BY MortezaVaei  
-Telegram Username : @MortezaVaezi_ir,
-Site URL : mortezavaezi.ir
-*/
         }else{
             $chBt[] = [["text"=>"✅ عضو شدم ✅","callback_data"=>"membershipConfirmation"]];
             bot('sendMessage', [
@@ -191,11 +209,6 @@ Site URL : mortezavaezi.ir
     $messageId = $message->message_id;
     $data = $update->callback_query->data;
     $userId = $from->id;
-/* 
-DEVELOPED BY MortezaVaei    
-Telegram Username : @MortezaVaezi_ir,
-Site URL : mortezavaezi.ir
-*/
     if(in_array($userId,$admins)){
         if($data == "cleanParticipants"){
             $usersDB->deleteOldArrays(0);
@@ -236,11 +249,6 @@ Site URL : mortezavaezi.ir
                 ]);     
                 goto start;      
             }else{
-/* 
-DEVELOPED BY MortezaVaei          
-Telegram Username : @MortezaVaezi_ir,
-Site URL : mortezavaezi.ir
-*/
                 $chBt[] = [["text"=>"✅ عضو شدم ✅","callback_data"=>"membershipConfirmation"]];
                 bot('editMessageText', [
                     'chat_id' => $chat->id,
@@ -254,13 +262,13 @@ Site URL : mortezavaezi.ir
         }
     }
 }
-
-
-
 /* 
-DEVELOPED BY MortezaVaei                
+DEVELOPED BY MortezaVaei
 Telegram Username : @MortezaVaezi_ir,
 Site URL : mortezavaezi.ir
 */
+
+
+
 
 ?>
