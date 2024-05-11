@@ -1,0 +1,73 @@
+name: build
+on:
+  pull_request:
+  push:
+jobs:
+  run:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        php-versions: ["8.2", "8.3"]
+    name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          extensions: mbstring, intl, sockets
+          coverage: xdebug
+
+      - name: Check environment
+        run: |
+          php --version
+          composer --version
+
+      - name: Get composer cache directory
+        id: composercache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composercache.outputs.dir }}
+          key: ${{ matrix.os }}-composer-${{ matrix.php-versions }}-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ matrix.os }}-composer-${{ matrix.php-versions }}-
+
+      - name: Install dependencies
+        run: |
+          composer install --prefer-dist
+          wget https://github.com/infection/infection/releases/download/0.27.0/infection.phar -O /usr/local/bin/infection
+          chmod +x /usr/local/bin/infection
+
+      - name: Run codestyle check
+        env:
+          PHP_CS_FIXER_IGNORE_ENV: 1
+        run: |
+          vendor/bin/php-cs-fixer --diff --dry-run -v fix
+      
+      - name: Run unit tests
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
+          DEST: ${{ secrets.DEST }}
+        run: |
+          vendor/bin/phpunit --coverage-text --coverage-clover build/logs/clover.xml
+
+      #- name: Run mutation tests
+      #  env:
+      #    STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}
+      #  run: |
+      #    infection --show-mutations
+
+      - name: Run Psalm analysis
+        run: |
+          vendor/bin/psalm --shepherd
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: danog/telegram-entities

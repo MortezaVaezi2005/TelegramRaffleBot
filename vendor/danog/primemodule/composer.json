@@ -1,0 +1,36 @@
+{
+    "name": "danog/primemodule",
+    "description": "Prime module capable of doing prime factorization of huge numbers very quickly.\"",
+    "type": "library",
+    "license": "AGPL-3.0-only",
+    "authors": [
+        {
+            "name": "Daniil Gentili",
+            "email": "daniil@daniil.it"
+        }
+    ],
+    "require": {
+        "php": "^8.0"
+    },
+    "suggest": {
+        "ext-primemodule": "Install the native C++ extension for extremely fast factorization (https://prime.madelineproto.xyz)"
+    },
+    "autoload": {
+        "psr-0": {
+            "danog\\": "lib/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "phabel/phabel": true
+        }
+    },
+    "require-dev": {
+        "phabel/phabel": "^1"
+    },
+    "extra": {
+        "phabel": {
+            "revision": 0
+        }
+    }
+}

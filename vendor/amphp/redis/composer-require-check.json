@@ -1,0 +1,34 @@
+{
+    "symbol-whitelist": [
+        "null",
+        "true",
+        "false",
+        "static",
+        "self",
+        "parent",
+        "array",
+        "string",
+        "int",
+        "float",
+        "bool",
+        "iterable",
+        "callable",
+        "mixed",
+        "void",
+        "object",
+        "never",
+        "toMap",
+        "createRedisConnector",
+        "random_bytes"
+    ],
+    "php-core-extensions": [
+        "Core",
+        "date",
+        "pcre",
+        "Phar",
+        "Reflection",
+        "SPL",
+        "standard",
+        "hash"
+    ]
+}

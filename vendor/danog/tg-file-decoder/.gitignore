@@ -1,0 +1,128 @@
+coverage
+.phpunit.cache
+MadelineProtoPhar
+JSON.sh
+halloween
+*.raw
+magnabroadcast.php
+broadcast.php
+
+docs/.jekyll-metadata
+songs.php
+_site
+
+# JetBrains IDE
+.idea/
+*.iml
+
+# Eclipse
+.buildpath
+.project
+.settings
+
+# VI
+*.swp
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# emacs auto-saving files
+\#*#
+.#*#
+*.swp
+vendor
+*bak
+token.php
+*~uploading*
+session.mad
+*.madeline
+*.madeline.lock
+enc.tar.xz
+a
+web_data.php
+web_API.log
+db_connect.php
+sessions
+docs_md
+
+.env
+composer.lock
+b.php
+*.log
+telegram-cli*
+src/danog/MadelineProto/Fuzzer.php
+fuzzer.php
+tests/500mb
+*.save
+*.save.1
+*.save.*
+phar7
+phar5
+madeline.phar
+madeline.phar.version
+big
+*.phar
+madeline.php
+.phpunit.result.cache
+.vscode/*
+.vscode
+custom.md
+composer.lock
+phpunit.xml
+vendor
+.php_cs.cache
+coverage
+tempConv
+extracted.json
+tools

@@ -1,0 +1,46 @@
+{
+    "name": "danog/telegram-entities",
+    "description": "A library to work with Telegram UTF-16 styled text entities.",
+    "type": "library",
+    "license": "Apache-2.0",
+    "autoload": {
+        "psr-4": {
+            "danog\\TelegramEntities\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "danog\\TestTelegramEntities\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Daniil Gentili",
+            "email": "daniil@daniil.it"
+        }
+    ],
+    "require": {
+        "php-64bit": ">=8.2.4",
+        "webmozart/assert": "^1.11",
+        "symfony/polyfill-mbstring": "*"
+    },
+    "require-dev": {
+        "vimeo/psalm": "dev-master",
+        "phpunit/phpunit": "^11.0.9",
+        "amphp/php-cs-fixer-config": "^2.0.1",
+        "friendsofphp/php-cs-fixer": "^3.52.1",
+        "infection/infection": "^0.28.1",
+        "danog/phpdoc": "^0.1.22",
+        "amphp/http-client": "^5.0"
+    },
+    "scripts": {
+        "cs-fix": "PHP_CS_FIXER_IGNORE_ENV=1 php -d pcre.jit=0 vendor/bin/php-cs-fixer fix -v"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "infection/extension-installer": true
+        }
+    }
+
+}

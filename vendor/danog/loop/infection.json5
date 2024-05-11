@@ -1,0 +1,11 @@
+{
+    "$schema": "https://raw.githubusercontent.com/infection/infection/0.27.3/resources/schema.json",
+    "source": {
+        "directories": [
+            "lib"
+        ]
+    },
+    "mutators": {
+        "@default": true
+    }
+}

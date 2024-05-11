@@ -1,0 +1,15 @@
+[submodule "examples/magnaluna"]
+	path = examples/magnaluna
+	url = https://github.com/danog/magnaluna.git
+[submodule "examples/pipesbot"]
+	path = examples/pipesbot
+	url = https://github.com/danog/pipesbot.git
+[submodule "schemas"]
+	path = schemas
+	url = https://github.com/danog/schemas.git
+[submodule "docs"]
+	path = docs
+	url = https://github.com/danog/MadelineProtoDocs.git
+[submodule "examples/downloadRenameBot"]
+	path = examples/downloadRenameBot
+	url = https://github.com/danog/downloadRenameBot

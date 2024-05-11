@@ -1,0 +1,62 @@
+{
+    "name": "league/uri-components",
+    "type": "library",
+    "description" : "URI components manipulation library",
+    "keywords": [
+        "url",
+        "uri",
+        "rfc3986",
+        "components",
+        "scheme",
+        "userinfo",
+        "host",
+        "port",
+        "authority",
+        "path",
+        "query",
+        "fragment",
+        "modifier",
+        "middleware"
+    ],
+    "license": "MIT",
+    "homepage": "http://uri.thephpleague.com",
+    "authors": [
+        {
+            "name" : "Ignace Nyamagana Butera",
+            "email" : "nyamsprod@gmail.com",
+            "homepage" : "https://nyamsprod.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "league/uri": "^7.3"
+    },
+    "suggest": {
+        "ext-bcmath": "to improve IPV4 host parsing",
+        "ext-mbstring": "to use the sorting algorithm of URLSearchParams",
+        "ext-fileinfo": "to create Data URI from file contennts",
+        "ext-gmp": "to improve IPV4 host parsing",
+        "ext-intl": "to handle IDN host with the best performance",
+        "jeremykendall/php-domain-parser": "to resolve Public Suffix and Top Level Domain",
+        "php-64bit": "to improve IPV4 host parsing",
+        "symfony/polyfill-intl-idn": "to handle IDN host via the Symfony polyfill if ext-intl is not present"
+    },
+    "autoload": {
+        "psr-4": {
+            "League\\Uri\\": ""
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "7.x-dev"
+        }
+    },
+    "support": {
+        "forum": "https://thephpleague.slack.com",
+        "docs": "https://uri.thephpleague.com",
+        "issues": "https://github.com/thephpleague/uri-src/issues"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

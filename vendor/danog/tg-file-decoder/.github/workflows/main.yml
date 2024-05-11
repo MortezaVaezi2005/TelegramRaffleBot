@@ -1,0 +1,49 @@
+name: build
+on:
+  pull_request:
+  push:
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    container: shivammathur/node:bionic-${{ matrix.tag }}
+    strategy:
+      matrix:
+        tag: ["amd64"]
+        php: ["8.2", "8.3"]
+    name: PHP ${{ matrix.php }} Test on ${{ matrix.tag }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup PHP
+        # Inputs to manual.sh are in this order - php, extensions, ini-values, coverage, tools
+        run: curl -sL https://setup-php.com/manual.sh | bash -s ${{ matrix.php }} "mbstring, intl, sockets" "memory_limit=-1" "xdebug"
+
+      - name: Check environment
+        run: |
+          php --version
+          composer --version
+
+      - name: Get composer cache directory
+        id: composercache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.composercache.outputs.dir }}
+          key: ${{ matrix.os }}-composer-${{ matrix.php }}-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ matrix.os }}-composer-${{ matrix.php }}-
+
+      - name: Install dependencies
+        run: composer install --prefer-dist
+
+      - name: Run tests
+        env:
+          PHP_CS_FIXER_IGNORE_ENV: 1
+          TOKEN: ${{ secrets.TOKEN }}
+          DEST: ${{ secrets.DEST }}
+        run: |
+          vendor/bin/psalm --no-cache --shepherd
+          vendor/bin/phpunit --coverage-text --coverage-clover build/logs/clover.xml
+          vendor/bin/php-cs-fixer --diff --dry-run -v fix

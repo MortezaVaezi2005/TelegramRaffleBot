@@ -1,0 +1,53 @@
+{
+    "name": "danog/libdns-json",
+    "homepage": "https://github.com/danog/libdns-json",
+    "description": "Encoder/decoder for google's JSON DNS message format based on libdns",
+    "keywords": [
+        "dns",
+        "doh",
+        "dns-over-https",
+        "https",
+        "json",
+        "libdns",
+        "message"
+    ],
+    "license": "MIT",
+    "authors": [{
+            "name": "Daniil Gentili",
+            "email": "daniil@daniil.it"
+        },
+        {
+            "name": "Chris Wright",
+            "email": "addr@daverandom.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "daverandom/libdns": "^2.0.1",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "amphp/php-cs-fixer-config": "v2.x-dev",
+        "phpunit/phpunit": "^9",
+        "psalm/phar": "^5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "danog\\LibDNSJson\\": "lib"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "danog\\LibDNSJson\\Test\\": "test"
+        }
+    },
+    "scripts": {
+        "check": [
+            "@cs",
+            "@test"
+        ],
+        "cs": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix -v --diff --dry-run",
+        "cs-fix": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix -v --diff",
+        "test": "@php -dzend.assertions=1 -dassert.exception=1 ./vendor/bin/phpunit --coverage-text"
+    }
+}

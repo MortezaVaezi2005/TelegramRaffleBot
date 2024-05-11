@@ -1,0 +1,36 @@
+{
+    "symbol-whitelist": [
+        "null",
+        "true",
+        "false",
+        "static",
+        "self",
+        "parent",
+        "array",
+        "string",
+        "int",
+        "float",
+        "bool",
+        "iterable",
+        "callable",
+        "mixed",
+        "void",
+        "object",
+        "hasColorSupport",
+        "PHP_WINDOWS_VERSION_BUILD",
+        "PHP_WINDOWS_VERSION_MINOR",
+        "PHP_WINDOWS_VERSION_MAJOR",
+        "posix_isatty",
+        "sapi_windows_vt100_support"
+    ],
+    "php-core-extensions": [
+        "Core",
+        "date",
+        "pcre",
+        "Phar",
+        "Reflection",
+        "SPL",
+        "standard",
+        "hash"
+    ]
+}

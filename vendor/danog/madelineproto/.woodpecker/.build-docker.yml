@@ -1,0 +1,26 @@
+clone:
+  git:
+    when:
+      event:
+        - tag
+        - push
+    image: woodpeckerci/plugin-git
+    settings:
+      depth: 1
+      lfs: false
+      recursive: false
+      tags: true
+
+steps:
+  variants:
+    image: docker:cli
+    secrets: [docker_username, docker_password]
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    commands:
+      - apk add bash
+      - tests/docker.sh
+    when:
+      event:
+        - tag
+        - push

@@ -1,0 +1,66 @@
+{
+    "name": "amphp/hpack",
+    "homepage": "https://github.com/amphp/hpack",
+    "description": "HTTP/2 HPack implementation.",
+    "keywords": [
+        "http-2",
+        "hpack",
+        "headers"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniel Lowrey",
+            "email": "rdlowrey@php.net"
+        },
+        {
+            "name": "Bob Weinand"
+        },
+        {
+            "name": "Niklas Keller",
+            "email": "me@kelunik.com"
+        },
+        {
+            "name": "Aaron Piotrowski",
+            "email": "aaron@trowski.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1"
+    },
+    "require-dev": {
+        "amphp/php-cs-fixer-config": "^2",
+        "http2jp/hpack-test-case": "^1",
+        "phpunit/phpunit": "^7 | ^8 | ^9",
+        "nikic/php-fuzzer": "^0.0.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "Amp\\Http\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Amp\\Http\\": "test"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "3.x-dev"
+        }
+    },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "http2jp/hpack-test-case",
+                "version": "1.0",
+                "source": {
+                    "url": "https://github.com/http2jp/hpack-test-case",
+                    "type": "git",
+                    "reference": "origin/master"
+                }
+            }
+        }
+    ]
+}

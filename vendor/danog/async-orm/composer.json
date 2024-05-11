@@ -1,0 +1,52 @@
+{
+    "name": "danog/async-orm",
+    "description": "Async ORM based on AMPHP v3 and fibers.",
+    "type": "library",
+    "license": "Apache-2.0",
+    "autoload": {
+        "psr-4": {
+            "danog\\AsyncOrm\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "danog\\TestAsyncOrm\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Daniil Gentili",
+            "email": "daniil@daniil.it"
+        },
+        {
+            "name": "Alexander Pankratov",
+            "email": "alexander@i-c-a.su"
+        }
+    ],
+    "require": {
+        "php": ">=8.2.4",
+        "amphp/mysql": "^3.0",
+        "amphp/postgres": "^2.0",
+        "amphp/redis": "^2.0",
+        "amphp/sync": "^2.2",
+        "revolt/event-loop": "^1.0.6"
+    },
+    "require-dev": {
+        "vimeo/psalm": "dev-master",
+        "phpunit/phpunit": "^11.0.9",
+        "amphp/php-cs-fixer-config": "^2.0.1",
+        "friendsofphp/php-cs-fixer": "^3.52.1",
+        "amphp/process": "^2.0.2",
+        "infection/infection": "^0.28.1",
+        "danog/phpdoc": "^0.1.22"
+    },
+    "scripts": {
+        "cs-fix": "PHP_CS_FIXER_IGNORE_ENV=1 php -d pcre.jit=0 vendor/bin/php-cs-fixer fix -v"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "infection/extension-installer": true
+        }
+    }
+}

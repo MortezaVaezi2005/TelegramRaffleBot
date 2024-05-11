@@ -1,0 +1,47 @@
+{
+    "name": "amphp/http",
+    "description": "Basic HTTP primitives which can be shared by servers and clients.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Niklas Keller",
+            "email": "me@kelunik.com"
+        },
+        {
+            "name": "Aaron Piotrowski",
+            "email": "aaron@trowski.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Amp\\Http\\": "src"
+        },
+        "files": [
+            "src/functions.php",
+            "src/Internal/constants.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+          "Amp\\Http\\": "test"
+        }
+    },
+    "require": {
+        "php": ">=8.1",
+        "amphp/hpack": "^3",
+        "amphp/parser": "^1.1",
+        "league/uri-components": "^2.4.2 | ^7.1",
+        "psr/http-message": "^1 | ^2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9",
+        "amphp/php-cs-fixer-config": "^2",
+        "league/uri": "^6.8 | ^7.1",
+        "psalm/phar": "^5.4"
+    },
+    "scripts": {
+        "test": "php -dzend.assertions=1 -dassert.exception=1 vendor/bin/phpunit",
+        "code-style": "php vendor/bin/php-cs-fixer fix"
+    }
+}

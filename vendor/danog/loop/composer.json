@@ -1,0 +1,48 @@
+{
+    "name": "danog/loop",
+    "description": "Loop abstraction for AMPHP.",
+    "keywords": [
+        "asynchronous",
+        "async",
+        "concurrent",
+        "multi-threading",
+        "multi-processing"
+    ],
+    "homepage": "https://github.com/danog/loop",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniil Gentili",
+            "email": "daniil@daniil.it"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "amphp/amp": "^3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9",
+        "amphp/phpunit-util": "^3",
+        "amphp/php-cs-fixer-config": "^2",
+        "psalm/phar": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "danog\\Loop\\": "lib"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "danog\\Loop\\Test\\": "test"
+        }
+    },
+    "scripts": {
+        "check": [
+            "@cs",
+            "@test"
+        ],
+        "cs": "php-cs-fixer fix -v --diff --dry-run",
+        "cs-fix": "php-cs-fixer fix -v --diff",
+        "test": "phpdbg -qrr -dzend.assertions=1 -dassert.exception=1 ./vendor/bin/phpunit --coverage-text"
+    }
+}

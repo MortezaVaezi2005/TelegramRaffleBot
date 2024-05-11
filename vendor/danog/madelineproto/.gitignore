@@ -1,0 +1,152 @@
+MadelineProtoPhar
+JSON.sh
+halloween
+*.raw
+magnabroadcast.php
+broadcast.php
+
+docs/.jekyll-metadata
+songs.php
+_site
+
+# JetBrains IDE
+.idea/
+*.iml
+
+# Eclipse
+.buildpath
+.project
+.settings
+
+# VI
+*.swp
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# emacs auto-saving files
+\#*#
+.#*#
+vendor
+*bak
+token.php
+*~uploading*
+enc.tar.xz
+a
+web_data.php
+web_API.log
+db_connect.php
+
+sessions
+docs_md
+session.mad
+*.madeline
+*.madeline.*
+madeline.phar
+madeline.phar.version
+madeline.php
+
+.env
+composer.lock
+b.php
+telegram-cli*
+src/Fuzzer.php
+fuzzer.php
+tests/500mb
+*.save
+*.save.1
+*.save.*
+phar7
+phar5
+big
+*.phar
+.phpunit.result.cache
+.vscode/*
+.vscode
+custom.md
+.php_cs.cache
+coverage
+tempConv
+
+ponyScripts
+
+*.madeline.*
+
+uwu
+madeline*phar
+madeline*phar.version
+madeline*phar.lock
+e.php
+
+.phpdoc_cache
+
+tests/db-local.php
+a.php
+aa.php
+aaa.php
+aaaa.php
+b.php
+c.php
+d.php
+t.php
+app_test.json
+app.json
+config.json
+
+/Dockerfile
+
+/docker-compose.yml
+/Caddyfile
+/tt.php
+/changelog
