@@ -1,2 +1,34 @@
-# telegramLotteryBot
-The Telegram bot for conducting giveaways is written in PHP using the MadelineProto library. It has the capability to draw winners from Telegram comments, as well as from registered participants, with the ability to enforce mandatory user membership.
+# ربات تلگرام قرعه کشی
+
+این ربات تلگرام به شما امکان قرعه کشی در گروه‌ها و کانال‌های تلگرام را می‌دهد.
+
+## قابلیت‌ها:
+- قرعه کشی کامنتی بدون محدودیت
+- ایجاد قرعه کشی ثبت نامی
+- عضویت اجباری در کانال‌ها و گروه‌ها بدون محدودیت
+- نصب آسان
+
+### مرحله‌های راه‌اندازی:
+1. آپلود سورس ربات به محل دلخواه خود.
+2. اجرای فایل `install.php`.
+
+
+نوشته شده با 💖 و ☕ 
+
+---
+
+# Telegram Raffle Bot
+
+This Telegram bot allows you to conduct raffles within Telegram groups and channels.
+
+## Features:
+- Unlimited Comment Raffles
+- Create Registration-based Raffles
+- Mandatory Joining of Channels and Groups without Restrictions
+- Easy Installation
+
+### Installation Steps:
+1. Upload the bot source to your desired location.
+2. Run the `install.php` file.
+
+Written with 💖 and ☕
