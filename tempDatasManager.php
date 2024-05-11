@@ -1,4 +1,9 @@
 <?php
+/* 
+DEVELOPED BY MortezaVaei
+Telegram Username : @MortezaVaezi_ir,
+Site URL : mortezavaezi.ir
+*/
 
 class TempDatasManager
 {
@@ -7,7 +12,7 @@ class TempDatasManager
     public function __construct($filename)
     {
         if (!file_exists($filename)) {
-            fopen($filename, "w");
+            file_put_contents($filename,json_encode(array()));
         }
         $this->filename = $filename;
     }
