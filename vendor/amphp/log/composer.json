@@ -1,0 +1,51 @@
+{
+    "name": "amphp/log",
+    "homepage": "https://github.com/amphp/log",
+    "description": "Non-blocking logging for PHP based on Amp, Revolt, and Monolog.",
+    "keywords": [
+        "log",
+        "logging",
+        "logger",
+        "async",
+        "non-blocking",
+        "amp",
+        "amphp"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aaron Piotrowski",
+            "email": "aaron@trowski.com"
+        },
+        {
+            "name": "Niklas Keller",
+            "email": "me@kelunik.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "amphp/amp": "^3",
+        "amphp/byte-stream": "^2",
+        "monolog/monolog": "^3|^2|^1.23",
+        "psr/log": "^3|^2|^1"
+    },
+    "require-dev": {
+        "amphp/phpunit-util": "^3",
+        "amphp/file": "^3",
+        "amphp/php-cs-fixer-config": "^2",
+        "phpunit/phpunit": "^9",
+        "psalm/phar": "^5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Amp\\Log\\": "src"
+        },
+        "files": [
+            "src/functions.php"
+        ]
+    },
+    "scripts": {
+        "test": "@php -dzend.assertions=1 -dassert.exception=1 ./vendor/bin/phpunit",
+        "code-style": "@php ./vendor/bin/php-cs-fixer fix"
+    }
+}

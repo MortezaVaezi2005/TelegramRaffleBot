@@ -1,0 +1,10 @@
+{
+    "require": {
+        "danog/madelineproto": "^8"
+    },
+    "config": {
+        "allow-plugins": {
+            "symfony/thanks": true
+        }
+    }
+}

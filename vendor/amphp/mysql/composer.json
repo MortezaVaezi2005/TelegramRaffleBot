@@ -1,0 +1,61 @@
+{
+    "name": "amphp/mysql",
+    "description": "Asynchronous MySQL client for PHP based on Amp.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bob Weinand",
+            "email": "bobwei9@hotmail.com"
+        },
+        {
+            "name": "Aaron Piotrowski",
+            "email": "aaron@trowski.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "amphp/amp": "^3",
+        "amphp/parser": "^1.1",
+        "amphp/pipeline": "^1",
+        "amphp/socket": "^2.2",
+        "amphp/sql": "^2",
+        "amphp/sql-common": "^2"
+    },
+    "require-dev": {
+        "ext-mysqli": "*",
+        "ext-openssl": "*",
+        "amphp/process": "^2",
+        "amphp/file": "^3",
+        "phpunit/phpunit": "^9",
+        "amphp/phpunit-util": "^3",
+        "amphp/php-cs-fixer-config": "^2",
+        "phpbench/phpbench": "^1.2.6",
+        "psalm/phar": "5.23"
+    },
+    "autoload": {
+        "psr-4": {
+            "Amp\\Mysql\\": "src"
+        },
+        "files": [
+            "src/functions.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Amp\\Mysql\\Test\\": "test",
+            "Amp\\Mysql\\Bench\\": "benchmarks"
+        },
+        "files": [
+            "test/initialize.php"
+        ]
+    },
+    "scripts": {
+        "check": [
+            "@cs",
+            "@test"
+        ],
+        "cs": "php-cs-fixer fix -v --diff --dry-run",
+        "cs-fix": "php-cs-fixer fix -v --diff",
+        "test": "@php -dzend.assertions=1 -dassert.exception=1 ./vendor/bin/phpunit"
+    }
+}

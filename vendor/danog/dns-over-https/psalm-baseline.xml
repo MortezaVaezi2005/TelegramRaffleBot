@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="dev-master@a75d26a3d425d183da8bef37cfc14976c8d817d6">
+  <file src="lib/Rfc8484StubDoHResolver.php">
+    <InvalidReturnStatement>
+      <code><![CDATA[$promise->await($cancellation)]]></code>
+      <code>\array_merge(...$records)</code>
+    </InvalidReturnStatement>
+    <LessSpecificReturnStatement>
+      <code>$records</code>
+    </LessSpecificReturnStatement>
+    <MoreSpecificReturnType>
+      <code>array</code>
+    </MoreSpecificReturnType>
+  </file>
+</files>

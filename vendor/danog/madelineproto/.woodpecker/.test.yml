@@ -1,0 +1,56 @@
+matrix:
+  php:
+    - "8.1"
+
+clone:
+  git:
+    when:
+      event:
+        - tag
+        - push
+        - pull_request
+    image: woodpeckerci/plugin-git:2.1.0
+    settings:
+      depth: 1
+      lfs: false
+      recursive: false
+      tags: true
+
+steps:
+  test:
+    group: test
+    image: danog/madelineproto:next
+    when:
+      event:
+        - tag
+    secrets:
+      - API_ID
+      - API_HASH
+      - BOT_TOKEN
+      - DEST
+    commands:
+      - apk add bash
+      - tests/test.sh phpunit
+    
+  test_light:
+    group: test
+    image: danog/madelineproto:next
+    when:
+      event:
+        - pull_request
+        - push
+    commands:
+      - apk add bash
+      - tests/test.sh phpunit-light
+
+  handshake:
+    group: test
+    image: danog/madelineproto:next
+    when:
+      event:
+        - pull_request
+        - tag
+        - push
+    commands:
+      - apk add bash
+      - tests/test.sh handshake

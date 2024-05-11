@@ -1,0 +1,80 @@
+{
+    "name": "amphp/file",
+    "homepage": "https://github.com/amphp/file",
+    "description": "Non-blocking access to the filesystem based on Amp and Revolt.",
+    "support": {
+        "issues": "https://github.com/amphp/file/issues"
+    },
+    "keywords": [
+        "file",
+        "disk",
+        "static",
+        "async",
+        "non-blocking",
+        "amp",
+        "amphp",
+        "io",
+        "filesystem"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniel Lowrey",
+            "email": "rdlowrey@php.net"
+        },
+        {
+            "name": "Aaron Piotrowski",
+            "email": "aaron@trowski.com"
+        },
+        {
+            "name": "Niklas Keller",
+            "email": "me@kelunik.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "amphp/amp": "^3",
+        "amphp/byte-stream": "^2",
+        "amphp/cache": "^2",
+        "amphp/parallel": "^2.1",
+        "amphp/sync": "^2",
+        "revolt/event-loop": "^1"
+    },
+    "require-dev": {
+        "amphp/phpunit-util": "^3",
+        "phpunit/phpunit": "^9",
+        "psalm/phar": "5.22.2",
+        "amphp/php-cs-fixer-config": "^2"
+    },
+    "suggest": {
+        "ext-eio": "^2 || ^3",
+        "ext-uv": "^0.3 || ^0.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Amp\\File\\": "src"
+        },
+        "files": ["src/functions.php"]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Amp\\File\\Test\\": "test",
+            "Amp\\Cache\\Test\\": "vendor/amphp/cache/test",
+            "Amp\\Sync\\": "vendor/amphp/sync/test"
+        }
+    },
+    "config": {
+        "preferred-install": {
+            "amphp/cache": "source",
+            "amphp/sync": "source"
+        }
+    },
+    "scripts": {
+        "check": [
+            "@code-style",
+            "@test"
+        ],
+        "code-style": "php-cs-fixer fix -v --diff",
+        "test": "@php -dzend.assertions=1 -dassert.exception=1 ./vendor/bin/phpunit --coverage-text"
+    }
+}

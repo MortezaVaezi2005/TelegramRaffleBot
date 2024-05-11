@@ -1,0 +1,8 @@
+includes:
+    - phpstan/include-by-php-version.php
+
+parameters:
+    level: 8
+    paths:
+        - src
+        - tests

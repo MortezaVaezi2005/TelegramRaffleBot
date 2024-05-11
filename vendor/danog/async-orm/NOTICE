@@ -1,0 +1,5 @@
+AsyncOrm - Async ORM based on AMPHP v3 and fibers.
+
+Copyright 2024 Daniil Gentili <daniil@daniil.it>, Alexander Pankratov <alexander@i-c-a.su>
+
+Homepage: https://github.com/danog/AsyncOrm

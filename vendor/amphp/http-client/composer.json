@@ -1,0 +1,82 @@
+{
+    "name": "amphp/http-client",
+    "homepage": "https://amphp.org/http-client",
+    "description": "An advanced async HTTP client library for PHP, enabling efficient, non-blocking, and concurrent requests and responses.",
+    "keywords": [
+        "http",
+        "rest",
+        "client",
+        "concurrent",
+        "async",
+        "non-blocking"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniel Lowrey",
+            "email": "rdlowrey@gmail.com"
+        },
+        {
+            "name": "Niklas Keller",
+            "email": "me@kelunik.com"
+        },
+        {
+            "name": "Aaron Piotrowski",
+            "email": "aaron@trowski.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "revolt/event-loop": "^1",
+        "amphp/amp": "^3",
+        "amphp/byte-stream": "^2",
+        "amphp/hpack": "^3",
+        "amphp/http": "^2",
+        "amphp/pipeline": "^1",
+        "amphp/socket": "^2",
+        "amphp/sync": "^2",
+        "league/uri": "^6 | ^7",
+        "league/uri-components": "^2.4 | ^7",
+        "league/uri-interfaces": "^7.1",
+        "psr/http-message": "^1 | ^2"
+    },
+    "require-dev": {
+        "ext-json": "*",
+        "amphp/file": "^3",
+        "amphp/phpunit-util": "^3",
+        "amphp/php-cs-fixer-config": "^2",
+        "phpunit/phpunit": "^9",
+        "amphp/http-server": "^3",
+        "kelunik/link-header-rfc5988": "^1",
+        "psalm/phar": "~5.23",
+        "laminas/laminas-diactoros": "^2.3"
+    },
+    "suggest": {
+        "ext-zlib": "Allows using compression for response bodies.",
+        "ext-json": "Required for logging HTTP archives",
+        "amphp/file": "Required for file request bodies and HTTP archive logging"
+    },
+    "autoload": {
+        "psr-4": {
+            "Amp\\Http\\Client\\": "src"
+        },
+        "files": [
+            "src/functions.php",
+            "src/Internal/functions.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Amp\\Http\\Client\\": "test"
+        }
+    },
+    "scripts": {
+        "check": [
+            "@cs",
+            "@test"
+        ],
+        "cs": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix -v --diff --dry-run",
+        "cs-fix": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix -v --diff",
+        "test": "@php -dzend.assertions=1 -dassert.exception=1 ./vendor/bin/phpunit --coverage-text"
+    }
+}

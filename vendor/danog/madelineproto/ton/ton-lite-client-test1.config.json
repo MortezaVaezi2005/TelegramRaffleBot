@@ -1,0 +1,22 @@
+{
+  "liteservers": [
+     {
+      "ip": 861606190,
+      "port": 9999,
+       "id": {
+         "@type": "pub.ed25519",
+        "key": "T10NJq2tgx6LpTHj734fSNYJ6S2w1hTdFRXJaj5st80"
+       }
+     }
+  ],
+  "validator": {
+    "@type": "validator.config.global",
+    "zero_state": {
+      "workchain": -1,
+      "shard": -9223372036854775808,
+      "seqno": 0,
+      "root_hash": "F6OpKZKqvqeFp6CQmFomXNMfMj2EnaUSOXN+Mh+wVWk=",
+      "file_hash": "XplPz01CXAps5qeSWUtxcyBfdAo5zVb1N979KLSKD24="
+    }
+  }
+}

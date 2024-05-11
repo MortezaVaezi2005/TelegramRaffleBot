@@ -1,0 +1,46 @@
+{
+    "name": "danog/tg-file-decoder",
+    "description": "Decode Telegram bot API file IDs",
+    "type": "project",
+    "license": "AGPL-3.0-only",
+    "keywords": ["telegram", "mtproto", "bot API", "file ID", "video", "stickers", "audio", "files"],
+    "authors": [
+        {
+            "name": "Daniil Gentili",
+            "email": "daniil@daniil.it"
+        }
+    ],
+    "require": {
+        "php-64bit": ">=8.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11",
+        "amphp/php-cs-fixer-config": "^2",
+        "vimeo/psalm": "dev-master",
+        "danog/phpdoc": "^0.1.22"
+    },
+    "autoload": {
+        "psr-4": {
+            "danog\\Decoder\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "danog\\Decoder\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "check": [
+            "@cs",
+            "@test"
+        ],
+        "cs": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix -v --diff --dry-run",
+        "cs-fix": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix -v --diff",
+        "test": "@php -dzend.assertions=1 -dassert.exception=1 ./vendor/bin/phpunit --coverage-text  --configuration phpunit.xml.dist"
+    },
+    "config": {
+        "allow-plugins": {
+            "phabel/phabel": true
+        }
+    }
+}
