@@ -19,6 +19,8 @@
 
 نوشته شده با 💖 و ☕
 
+<a href="https://www.coffeebede.com/mortezavaezi"><img class="img-fluid" style="width:200px;" src="https://coffeebede.ir/DashboardTemplateV2/app-assets/images/banner/default-yellow.svg" /></a>
+
 ---
 
 # Telegram Raffle Bot

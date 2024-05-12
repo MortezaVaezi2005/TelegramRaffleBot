@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/amphp/socket" />
+      <path value="$PROJECT_DIR$/vendor/danog/madelineproto" />
+      <path value="$PROJECT_DIR$/vendor/danog/primemodule" />
+      <path value="$PROJECT_DIR$/vendor/amphp/serialization" />
+      <path value="$PROJECT_DIR$/vendor/danog/telegram-entities" />
+      <path value="$PROJECT_DIR$/vendor/amphp/redis" />
+      <path value="$PROJECT_DIR$/vendor/danog/tg-file-decoder" />
+      <path value="$PROJECT_DIR$/vendor/amphp/process" />
+      <path value="$PROJECT_DIR$/vendor/amphp/postgres" />
+      <path value="$PROJECT_DIR$/vendor/amphp/pipeline" />
+      <path value="$PROJECT_DIR$/vendor/amphp/parser" />
+      <path value="$PROJECT_DIR$/vendor/amphp/parallel" />
+      <path value="$PROJECT_DIR$/vendor/amphp/mysql" />
+      <path value="$PROJECT_DIR$/vendor/amphp/log" />
+      <path value="$PROJECT_DIR$/vendor/amphp/http-client-cookies" />
+      <path value="$PROJECT_DIR$/vendor/amphp/http-client" />
+      <path value="$PROJECT_DIR$/vendor/amphp/http" />
+      <path value="$PROJECT_DIR$/vendor/amphp/hpack" />
+      <path value="$PROJECT_DIR$/vendor/amphp/file" />
+      <path value="$PROJECT_DIR$/vendor/amphp/dns" />
+      <path value="$PROJECT_DIR$/vendor/promphp/prometheus_client_php" />
+      <path value="$PROJECT_DIR$/vendor/amphp/cache" />
+      <path value="$PROJECT_DIR$/vendor/amphp/byte-stream" />
+      <path value="$PROJECT_DIR$/vendor/amphp/amp" />
+      <path value="$PROJECT_DIR$/vendor/revolt/event-loop" />
+      <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/constant_time_encoding" />
+      <path value="$PROJECT_DIR$/vendor/kelunik/certificate" />
+      <path value="$PROJECT_DIR$/vendor/dasprid/enum" />
+      <path value="$PROJECT_DIR$/vendor/league/uri-interfaces" />
+      <path value="$PROJECT_DIR$/vendor/league/uri-components" />
+      <path value="$PROJECT_DIR$/vendor/league/uri" />
+      <path value="$PROJECT_DIR$/vendor/bacon/bacon-qr-code" />
+      <path value="$PROJECT_DIR$/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/symfony/thanks" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/vendor/phpseclib/phpseclib" />
+      <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
+      <path value="$PROJECT_DIR$/vendor/daverandom/libdns" />
+      <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/amphp/windows-registry" />
+      <path value="$PROJECT_DIR$/vendor/amphp/websocket-client" />
+      <path value="$PROJECT_DIR$/vendor/danog/async-orm" />
+      <path value="$PROJECT_DIR$/vendor/amphp/websocket" />
+      <path value="$PROJECT_DIR$/vendor/danog/dns-over-https" />
+      <path value="$PROJECT_DIR$/vendor/amphp/sync" />
+      <path value="$PROJECT_DIR$/vendor/danog/ipc" />
+      <path value="$PROJECT_DIR$/vendor/amphp/sql-common" />
+      <path value="$PROJECT_DIR$/vendor/danog/libdns-json" />
+      <path value="$PROJECT_DIR$/vendor/amphp/sql" />
+      <path value="$PROJECT_DIR$/vendor/danog/loop" />
+    </include_path>
+  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.1">
+    <option name="suggestChangeDefaultLanguageLevel" value="false" />
+  </component>
+</project>
