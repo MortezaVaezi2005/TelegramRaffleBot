@@ -1,9 +1,0 @@
-.vscode
-/infection/
-a.php
-.phpunit.cache
-/vendor/
-*.cache
-composer.lock
-/coverage/
-/.infection-cache

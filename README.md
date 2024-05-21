@@ -7,6 +7,7 @@
 - ایجاد قرعه کشی ثبت نامی
 - عضویت اجباری در کانال‌ها و گروه‌ها بدون محدودیت
 - نصب آسان
+- بررسی وجود آپدیت به صورت خودکار
 
 
 ### پیش نیاز ها:
@@ -15,7 +16,8 @@
 
 ### مرحله‌های راه‌اندازی:
 1. آپلود سورس ربات به محل دلخواه خود.
-2. اجرای فایل `install.php`.
+2. با استفاده از دستور `composer install` پیش نیاز را نصب کنید.
+3. حالا میتوانید برای نصب ربات فایل `install.php` را اجرا نمایید.
 
 نوشته شده با 💖 و ☕
 
@@ -32,13 +34,14 @@ This Telegram bot allows you to conduct raffles within Telegram groups and chann
 - Create Registration-based Raffles
 - Mandatory Joining of Channels and Groups without Restrictions
 - Easy Installation
+- Automatically check for updates
 
 ### Requirements:
 - PHP version 8.3 and above
 
-
 ### Installation Steps:
-1. Upload the bot source to your desired location.
-2. Run the `install.php` file.
+1. Upload the bot source code to your desired location.
+2. Install the prerequisites using the command composer install.
+3. Now you can run the install.php file to install the bot.
 
 Written with 💖 and ☕

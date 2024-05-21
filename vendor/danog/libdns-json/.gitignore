@@ -1,8 +1,0 @@
-.vscode
-build
-composer.lock
-phpunit.xml
-vendor
-.php_cs.cache
-coverage
-*.cache

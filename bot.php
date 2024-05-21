@@ -5,13 +5,13 @@ Telegram Username : @MortezaVaezi_ir,
 Site URL : mortezavaezi.ir
 */
 date_default_timezone_set("Asia/Tehran");
-include 'vendor/autoload.php';
-include "tempDatasManager.php";
-include "functions.php";
-if (!file_exists("setting.json") || empty(file_get_contents('setting.json'))) {
+if (!file_exists("setting.json") || empty(file_get_contents('setting.json')) || !file_exists("vendor/autoload.php")) {
     header("location:install.php");
     die();
 }
+include 'vendor/autoload.php';
+include "tempDatasManager.php";
+include "functions.php";
 $settings = new TempDatasManager('setting.json');
 $usersDB = new TempDatasManager('participants.json');
 $MadelineProto = new \danog\MadelineProto\API('session.madeline');
