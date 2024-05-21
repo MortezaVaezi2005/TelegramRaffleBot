@@ -58,10 +58,9 @@ function getLatestReleaseVersion() {
 function getBotUpdates()
 {
     global $settings,$chat,$message;
-    $lastUpdateCheck = $settings->getArrayByKey('lastUpdateCheck')['lastUpdateCheck'];
-    if ($lastUpdateCheck == false){
+    $lastUpdateCheck = $settings->getTimeStampByKey('version');
+    if(abs(time() - $lastUpdateCheck) >= (24 * 60 * 60)){
         $settings->updateArrayByKey(['lastUpdateCheck'=>time()],'lastUpdateCheck');
-    }elseif(abs(time() - $lastUpdateCheck) >= (24 * 60 * 60)){
         $latestVersion = getLatestReleaseVersion();
         if($latestVersion != false){
             $currentversion = $settings->getArrayByKey('version')['version'];
@@ -70,7 +69,7 @@ function getBotUpdates()
                 bot('sendMessage', [
                     'chat_id' => $chat->id,
                     'reply_to_message_id'=>$message->message_id,
-                    'text' => '⚠️⚠️نسخه جدید ربات موجود است⚠️⚠️\n🟢 ادمین عزیز شما می توانید با مراجعه به صفحه پروژه ربات نسبت به دریافت سورس جدید ربات اقدام نمایید.\n\n\n\n 💠Developer @MortezaVaezi_ir',
+                    'text' => "⚠️⚠️نسخه جدید ربات موجود است⚠️⚠️\n\n🟢 ادمین عزیز شما می توانید با مراجعه به صفحه پروژه ربات نسبت به دریافت سورس جدید ربات اقدام نمایید.\n\n💠Developer: @MortezaVaezi_ir",
                     'reply_markup' =>json_encode([
                         'inline_keyboard'=>$bt
                     ])

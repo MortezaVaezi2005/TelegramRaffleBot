@@ -45,7 +45,18 @@ class TempDatasManager
     
         return false;
     }
+    public function getTimeStampByKey($arrayName)
+    {
+        if (file_exists($this->filename)) {
+            $data = json_decode(file_get_contents($this->filename), true);
 
+            if (isset($data[$arrayName])) {
+                return $data[$arrayName]['timestamp'];
+            }
+        }
+
+        return false;
+    }
     public function deleteArrayByKey($arrayName)
     {
         if (file_exists($this->filename)) {

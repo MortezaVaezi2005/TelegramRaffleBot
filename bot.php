@@ -34,13 +34,12 @@ if(isset($update->message) ){
     $userId = $from->id;
     $firstName = $from->first_name;
     if(in_array($userId,$admins)){
-        getBotUpdates();
         if($message->text == '/start'){
                      bot('sendMessage', [
                 'chat_id' => $chat->id,
                 'text' => "سلام، به ربات خودتان خوش آمدید.",
                 'reply_to_message_id'=>$message->message_id,
-                'reply_markup'=>json_encode(['keyboard' => [[ '⚙️ وضعیت شرکت کنندگان ⚙️'],[ '🌪️ قرعه کشی معمولی 🌪️', '📬 قرعه کشی کامنتی 📬'],[ 'روشن', 'خاموش'],['🗑️ پاکسازی لیست شرکت کنندگان 🗑️']],
+                'reply_markup'=>json_encode(['keyboard' => [[ '⚙️ وضعیت شرکت کنندگان ⚙️'],[ '🌪️ قرعه کشی معمولی 🌪️', '📬 قرعه کشی کامنتی 📬'],[ 'روشن', 'خاموش'],['🗑️ پاکسازی لیست شرکت کنندگان 🗑️']['ℹ️درباره رباتℹ️']],
             	'resize_keyboard'=>true])]);   
         }elseif($message->text == 'روشن' ){
             $settings->updateArrayByKey(['status'=>'on'],'status');
@@ -106,6 +105,16 @@ if(isset($update->message) ){
                     'reply_to_message_id'=>$message->message_id,
                     'text' => "📇 راهنمای قرعه کشی کامنتی 📇\n\n\n💠 ابتدا مطمئن شوید که اکانت متصل به بات، در کانال مورد نظر عضو است و به محتوای آن دسترسی دارد.\n\n💠سپس پست مورد نظر که حاوی کامنت های قرعه کشی است را به ربات فوروارد کنید.\n\n💠 بعد از فوروارد، درصورت انجام درست مراحل بالا، ربات لینک ورود به صفحه قرعه کشی کامنتی را برای شما ارسال خواهد کرد."
                 ]);
+        }elseif($message->text == 'ℹ️درباره رباتℹ️'){
+            $chBt[] = [["text"=>"GitHub Repository","url"=>'https://github.com/MortezaVaezi2005/TelegramRaffleBot']],[['text'=>'About Developer','url'=>'https://mortezavaezi.ir/my-telegram-raffle-bot-project/']];
+            bot('sendMessage', [
+                'chat_id' => $chat->id,
+                'reply_to_message_id'=>$message->message_id,
+                'text' => "با استفاده از دکمه های زیر میتوانید با پروژه ربات قرعه کشی بیشتر آشنا شوید👇👇👇",
+                'reply_markup' =>json_encode([
+                    'inline_keyboard'=>$chBt
+                ])
+            ]);
         }elseif(isset($message->forward_origin)){
             $forward = $message->forward_origin;
             if($forward->type == 'channel'){
@@ -160,6 +169,7 @@ if(isset($update->message) ){
                 ]);   
             }
         }
+        getBotUpdates();
     }else{
         if($off == true){
             bot('sendMessage', ['chat_id' => $chat->id, 'text' =>'ربات توسط ادمین خاموش شده است.
