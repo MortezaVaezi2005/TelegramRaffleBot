@@ -35,6 +35,7 @@ if(isset($update->message) ){
     $userId = $from->id;
     $firstName = $from->first_name;
     if(in_array($userId,$admins)){
+        getBotUpdates();
         if($message->text == '/start'){
                      bot('sendMessage', [
                 'chat_id' => $chat->id,
@@ -70,10 +71,10 @@ if(isset($update->message) ){
                 'text' => "تعداد شرکت کنندگان:  {$count}\nثبت نام آخرین شرکت کننده : {$lastStartTime}\n\n\nTime : {$date}",
                 'reply_to_message_id'=>$message->message_id]);
         }elseif($message->text == '🌪️ قرعه کشی معمولی 🌪️'){
-            $LotteryPageUrl = str_replace("bot.php","",$_SERVER['SCRIPT_URI'])."registrationLottery.php";
+            $rafflePageUrl = str_replace("bot.php","",$_SERVER['SCRIPT_URI'])."registrationRaffle.php";
             $count = count($usersDB->getAllData());
             if($count>=2){
-                $chBt[] = [["text"=>"ورود به صفحه قرعه کشی","url"=>$LotteryPageUrl]];
+                $chBt[] = [["text"=>"ورود به صفحه قرعه کشی","url"=>$rafflePageUrl]];
                 bot('sendMessage', [
                     'chat_id' => $chat->id,
                     'reply_to_message_id'=>$message->message_id,
@@ -126,14 +127,14 @@ if(isset($update->message) ){
                             }
                         }
                         $fromIds = array_values(array_unique(array_column($repliers, 'from_id')));
-                        $LotteryPageUrl = str_replace("bot.php","",$_SERVER['SCRIPT_URI'])."commentLottery.php?".http_build_query(['fromIds' => $fromIds]);
+                        $rafflePageUrl = str_replace("bot.php","",$_SERVER['SCRIPT_URI'])."commentRaffle.php?".http_build_query(['fromIds' => $fromIds]);
                         $count = count($fromIds);
                         if($count>=2){
                             bot('sendMessage', [
                                 'chat_id' => $chat->id,
                                 'reply_to_message_id'=>$message->message_id,
                                 'parse_mode'=>'HTML', 
-                                'text' => "برای ورود به صفحه قرعه کشی کامنتی روی لینک زیر کلیک کنید👇👇👇\n\n<a href='{$LotteryPageUrl}'>👨‍💻👨‍💻ورود به صفحه قرعه کشی کامنتی👨‍💻👨‍💻</a>",
+                                'text' => "برای ورود به صفحه قرعه کشی کامنتی روی لینک زیر کلیک کنید👇👇👇\n\n<a href='{$rafflePageUrl}'>👨‍💻👨‍💻ورود به صفحه قرعه کشی کامنتی👨‍💻👨‍💻</a>",
                             ]);
                         }else{
                             bot('sendMessage', [

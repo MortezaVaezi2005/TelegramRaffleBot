@@ -13,6 +13,7 @@ if(isset($_POST['submit'])){
     $settings = new TempDatasManager('setting.json');
     $settings->updateArrayByKey(['status'=>'off'],'status');
     $settings->updateArrayByKey(['botToken'=>$_POST['botToken']],'botToken');
+    $settings->updateArrayByKey(['version'=>'V2.0'],'version');
     $admins = [];
     foreach ($_POST['admins'] as $object) {
         $admins[] = $object['id'];

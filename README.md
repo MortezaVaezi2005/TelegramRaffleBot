@@ -23,7 +23,7 @@
 
 ---
 
-# Telegram Loterry Bot
+# Telegram Raffle Bot
 
 This Telegram bot allows you to conduct raffles within Telegram groups and channels.
 
