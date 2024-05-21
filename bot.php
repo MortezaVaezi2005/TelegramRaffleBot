@@ -4,7 +4,6 @@ DEVELOPED BY MortezaVaei
 Telegram Username : @MortezaVaezi_ir,
 Site URL : mortezavaezi.ir
 */
-
 date_default_timezone_set("Asia/Tehran");
 include 'vendor/autoload.php';
 include "tempDatasManager.php";
