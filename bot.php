@@ -23,9 +23,9 @@ $update = json_decode(file_get_contents('php://input'));
 $off = false;
 $botStatus = $settings->getArrayByKey('status');
 if($botStatus != false){
-   if($botStatus['status'] == 'off'){
-       $off = true;
-   }
+    if($botStatus['status'] == 'off'){
+        $off = true;
+    }
 }
 if(isset($update->message) ){
     $message = $update->message;
@@ -35,12 +35,12 @@ if(isset($update->message) ){
     $firstName = $from->first_name;
     if(in_array($userId,$admins)){
         if($message->text == '/start'){
-                     bot('sendMessage', [
+            bot('sendMessage', [
                 'chat_id' => $chat->id,
                 'text' => "سلام، به ربات خودتان خوش آمدید.",
                 'reply_to_message_id'=>$message->message_id,
-                'reply_markup'=>json_encode(['keyboard' => [[ '⚙️ وضعیت شرکت کنندگان ⚙️'],[ '🌪️ قرعه کشی معمولی 🌪️', '📬 قرعه کشی کامنتی 📬'],[ 'روشن', 'خاموش'],['🗑️ پاکسازی لیست شرکت کنندگان 🗑️']['ℹ️درباره رباتℹ️']],
-            	'resize_keyboard'=>true])]);   
+                'reply_markup'=>json_encode(['keyboard' => [[ '⚙️ وضعیت شرکت کنندگان ⚙️'],[ '🌪️ قرعه کشی معمولی 🌪️', '📬 قرعه کشی کامنتی 📬'],[ 'روشن', 'خاموش'],['🗑️ پاکسازی لیست شرکت کنندگان 🗑️'],['درباره ربات']],
+                    'resize_keyboard'=>true])]);
         }elseif($message->text == 'روشن' ){
             $settings->updateArrayByKey(['status'=>'on'],'status');
             bot('sendMessage', [
@@ -78,8 +78,8 @@ if(isset($update->message) ){
                     'reply_to_message_id'=>$message->message_id,
                     'text' => 'برای انجام قرعه کشی از طریق دکمه زیر وارد صفحه قرعه کشی شوید.',
                     'reply_markup' =>json_encode([
-                       'inline_keyboard'=>$chBt
-                          ])
+                        'inline_keyboard'=>$chBt
+                    ])
                 ]);
             }else{
                 bot('sendMessage', [
@@ -91,28 +91,29 @@ if(isset($update->message) ){
         }elseif($message->text == '🗑️ پاکسازی لیست شرکت کنندگان 🗑️'){
             $chBt[] = [["text"=>"بله، پاک شود!","callback_data"=>'cleanParticipants'],['text'=>'خیر، اشتباه شد!','callback_data'=>'noCleanParticipants']];
             bot('sendMessage', [
-            'chat_id' => $chat->id,
-            'reply_to_message_id'=>$message->message_id,
-            'text' => "⚠️⚠️ اخطار ⚠️⚠️\n\nآیا از پاکسازی لیست شرکت کنندگان اطمینان دارید؟\n\n ⭕در صورت پاکسازی لیست شرکت کنندگان امکان برگرداندن آنها وجود ندارد❕❕",
-            'reply_markup' =>json_encode([
-               'inline_keyboard'=>$chBt
-                  ])
+                'chat_id' => $chat->id,
+                'reply_to_message_id'=>$message->message_id,
+                'text' => "⚠️⚠️ اخطار ⚠️⚠️\n\nآیا از پاکسازی لیست شرکت کنندگان اطمینان دارید؟\n\n ⭕در صورت پاکسازی لیست شرکت کنندگان امکان برگرداندن آنها وجود ندارد❕❕",
+                'reply_markup' =>json_encode([
+                    'inline_keyboard'=>$chBt
+                ])
             ]);
 
         }elseif($message->text == '📬 قرعه کشی کامنتی 📬'){
-                bot('sendMessage', [
-                    'chat_id' => $chat->id,
-                    'reply_to_message_id'=>$message->message_id,
-                    'text' => "📇 راهنمای قرعه کشی کامنتی 📇\n\n\n💠 ابتدا مطمئن شوید که اکانت متصل به بات، در کانال مورد نظر عضو است و به محتوای آن دسترسی دارد.\n\n💠سپس پست مورد نظر که حاوی کامنت های قرعه کشی است را به ربات فوروارد کنید.\n\n💠 بعد از فوروارد، درصورت انجام درست مراحل بالا، ربات لینک ورود به صفحه قرعه کشی کامنتی را برای شما ارسال خواهد کرد."
-                ]);
-        }elseif($message->text == 'ℹ️درباره رباتℹ️'){
-            $chBt[] = [["text"=>"GitHub Repository","url"=>'https://github.com/MortezaVaezi2005/TelegramRaffleBot']],[['text'=>'About Developer','url'=>'https://mortezavaezi.ir/my-telegram-raffle-bot-project/']];
+            bot('sendMessage', [
+                'chat_id' => $chat->id,
+                'reply_to_message_id'=>$message->message_id,
+                'text' => "📇 راهنمای قرعه کشی کامنتی 📇\n\n\n💠 ابتدا مطمئن شوید که اکانت متصل به بات، در کانال مورد نظر عضو است و به محتوای آن دسترسی دارد.\n\n💠سپس پست مورد نظر که حاوی کامنت های قرعه کشی است را به ربات فوروارد کنید.\n\n💠 بعد از فوروارد، درصورت انجام درست مراحل بالا، ربات لینک ورود به صفحه قرعه کشی کامنتی را برای شما ارسال خواهد کرد."
+            ]);
+        }elseif($message->text == 'درباره ربات'){
+            $bt[] = [["text"=>"GitHub Repository","url"=>'https://github.com/MortezaVaezi2005/TelegramRaffleBot']];
+            $bt[] = [['text'=>'About Developer','url'=>'https://mortezavaezi.ir/my-telegram-raffle-bot-project/']];
             bot('sendMessage', [
                 'chat_id' => $chat->id,
                 'reply_to_message_id'=>$message->message_id,
                 'text' => "با استفاده از دکمه های زیر میتوانید با پروژه ربات قرعه کشی بیشتر آشنا شوید👇👇👇",
                 'reply_markup' =>json_encode([
-                    'inline_keyboard'=>$chBt
+                    'inline_keyboard'=>$bt
                 ])
             ]);
         }elseif(isset($message->forward_origin)){
@@ -120,12 +121,12 @@ if(isset($update->message) ){
             if($forward->type == 'channel'){
                 if(isset($forward->chat->username)){
                     try {
-                       $repliers = $MadelineProto->messages->getReplies(peer:"@{$forward->chat->username}", msg_id: $forward->message_id,limit:50)['messages'];
+                        $repliers = $MadelineProto->messages->getReplies(peer:"@{$forward->chat->username}", msg_id: $forward->message_id,limit:50)['messages'];
                         if (count($repliers) > 0) {
-                            $offset_id =   end($repliers)['id']; 
+                            $offset_id =   end($repliers)['id'];
                             while (true) {
                                 $result = $MadelineProto->messages->getReplies(peer:"@{$forward->chat->username}", msg_id: $forward->message_id,limit:100,offset_id: $offset_id)['messages'];
-                            
+
                                 if (isset($result) && count($result) > 0) {
                                     $repliers = array_merge($result,$repliers);
                                     $offset_id = end($result)['id'];
@@ -141,7 +142,7 @@ if(isset($update->message) ){
                             bot('sendMessage', [
                                 'chat_id' => $chat->id,
                                 'reply_to_message_id'=>$message->message_id,
-                                'parse_mode'=>'HTML', 
+                                'parse_mode'=>'HTML',
                                 'text' => "برای ورود به صفحه قرعه کشی کامنتی روی لینک زیر کلیک کنید👇👇👇\n\n<a href='{$rafflePageUrl}'>👨‍💻👨‍💻ورود به صفحه قرعه کشی کامنتی👨‍💻👨‍💻</a>",
                             ]);
                         }else{
@@ -153,20 +154,20 @@ if(isset($update->message) ){
                         }
                     } catch (\danog\MadelineProto\RPCErrorException $e) {
                         $MadelineProto->logger($e);
-                }
+                    }
                 }else{
                     bot('sendMessage', [
-                    'chat_id' => $chat->id,
-                    'reply_to_message_id'=>$message->message_id,
-                    'text' => ' امکان قرعه کشی میان کامنت های این پست وجود ندارد😞🥀'
-                    ]);   
+                        'chat_id' => $chat->id,
+                        'reply_to_message_id'=>$message->message_id,
+                        'text' => ' امکان قرعه کشی میان کامنت های این پست وجود ندارد😞🥀'
+                    ]);
                 }
             }else{
-                 bot('sendMessage', [
+                bot('sendMessage', [
                     'chat_id' => $chat->id,
                     'reply_to_message_id'=>$message->message_id,
                     'text' => "⚠️⚠️⚠️\n\nقرعه کشی کامنتی تنها برای پیام هایی که در چنل ها ارسال شده اند، امکان پذیر است!"
-                ]);   
+                ]);
             }
         }
         getBotUpdates();
@@ -174,43 +175,43 @@ if(isset($update->message) ){
         if($off == true){
             bot('sendMessage', ['chat_id' => $chat->id, 'text' =>'ربات توسط ادمین خاموش شده است.
            امکان دارد این خاموشی به دلیل پایان مهلت شرکت در قرعه کشی باشد.']);
-           die();
+            die();
         }
         if($message->text == '/start'){
-        start:
-        $chBt = [];
-        foreach($chs as $channel){
-            if(checkMembership($channel['id'], $from->id) == false ||checkMembership($channel['id'], $from->id) == "left"){
-                $chBt[] = [["text"=>$channel['title'],"url"=>$channel['link']]];
+            start:
+            $chBt = [];
+            foreach($chs as $channel){
+                if(checkMembership($channel['id'], $from->id) == false ||checkMembership($channel['id'], $from->id) == "left"){
+                    $chBt[] = [["text"=>$channel['title'],"url"=>$channel['link']]];
+                }
+            }
+            if(empty($chBt)){
+                if($usersDB->getArrayByKey($from->id) == false){
+                    $usersDB->createOrOpenTempDatasFile($from, $from->id);
+                    bot('sendMessage', [
+                        'chat_id' => $chat->id,
+                        'text' => "کاربر عزیز شما در قرعه کشی شرکت داده شدید. 
+                 لطفا نتیجه قرعه کشی را از طریق کانال دنبال کنید.",
+                        'reply_to_message_id'=>$message->message_id]);
+                }else{
+                    bot('sendMessage', [
+                        'chat_id' => $chat->id,
+                        'text' => "شما یکبار در قرعه کشی شرکت داده شده اید!
+                 لطفا اخبار قرعه کشی را از کانال دنبال کنید، تا از نتیجه مطلع شوید.",
+                        'reply_to_message_id'=>$message->message_id]);
+                }
+            }else{
+                $chBt[] = [["text"=>"✅ عضو شدم ✅","callback_data"=>"membershipConfirmation"]];
+                bot('sendMessage', [
+                    'chat_id' => $chat->id,
+                    'reply_to_message_id'=>$message->message_id,
+                    'text' => 'برای شرکت در قرعه کشی شما باید در کانال های زیر عضو شوید.',
+                    'reply_markup' =>json_encode([
+                        'inline_keyboard'=>$chBt
+                    ])
+                ]);
             }
         }
-        if(empty($chBt)){
-            if($usersDB->getArrayByKey($from->id) == false){
-                $usersDB->createOrOpenTempDatasFile($from, $from->id);
-                 bot('sendMessage', [
-                 'chat_id' => $chat->id, 
-                 'text' => "کاربر عزیز شما در قرعه کشی شرکت داده شدید. 
-                 لطفا نتیجه قرعه کشی را از طریق کانال دنبال کنید.",
-                'reply_to_message_id'=>$message->message_id]);
-            }else{
-                 bot('sendMessage', [
-                'chat_id' => $chat->id,
-                'text' => "شما یکبار در قرعه کشی شرکت داده شده اید!
-                 لطفا اخبار قرعه کشی را از کانال دنبال کنید، تا از نتیجه مطلع شوید.",
-                'reply_to_message_id'=>$message->message_id]);
-            }   
-        }else{
-            $chBt[] = [["text"=>"✅ عضو شدم ✅","callback_data"=>"membershipConfirmation"]];
-            bot('sendMessage', [
-                'chat_id' => $chat->id,
-                'reply_to_message_id'=>$message->message_id,
-                'text' => 'برای شرکت در قرعه کشی شما باید در کانال های زیر عضو شوید.',
-                'reply_markup' =>json_encode([
-                   'inline_keyboard'=>$chBt
-                      ])
-            ]);
-        }
-    }
     }
 }elseif(isset($update->callback_query)){
     $message = $update->callback_query->message;
@@ -238,7 +239,7 @@ if(isset($update->message) ){
         if($off == true){
             bot('sendMessage', ['chat_id' => $chat->id, 'text' =>'ربات توسط ادمین خاموش شده است.
            امکان دارد این خاموشی به دلیل پایان مهلت شرکت در قرعه کشی باشد.']);
-           die();
+            die();
         }
         if($data == "membershipConfirmation"){
             $chBt = [];
@@ -254,10 +255,10 @@ if(isset($update->message) ){
                 $userId = $from->id;
                 $firstName = $from->first_name;
                 bot('deleteMessage', [
-                'chat_id' => $chat->id,
-                'message_id' => $messageId
-                ]);     
-                goto start;      
+                    'chat_id' => $chat->id,
+                    'message_id' => $messageId
+                ]);
+                goto start;
             }else{
                 $chBt[] = [["text"=>"✅ عضو شدم ✅","callback_data"=>"membershipConfirmation"]];
                 bot('editMessageText', [
@@ -265,8 +266,8 @@ if(isset($update->message) ){
                     'message_id' => $messageId,
                     'text' => 'لطفا در کانال های زیر عضو شوید و سپس دکمه  عضو شدم را بفشارید.',
                     'reply_markup' =>json_encode([
-                       'inline_keyboard'=>$chBt
-                          ])
+                        'inline_keyboard'=>$chBt
+                    ])
                 ]);
             }
         }

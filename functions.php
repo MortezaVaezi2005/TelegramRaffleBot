@@ -60,15 +60,14 @@ function getBotUpdates()
     global $settings,$chat,$message;
     $lastUpdateCheck = $settings->getTimeStampByKey('version');
     if(abs(time() - $lastUpdateCheck) >= (24 * 60 * 60)){
-        $settings->updateArrayByKey(['lastUpdateCheck'=>time()],'lastUpdateCheck');
         $latestVersion = getLatestReleaseVersion();
         if($latestVersion != false){
             $currentversion = $settings->getArrayByKey('version')['version'];
+            $settings->updateArrayByKey(['version'=>$currentversion],'version');
             if ($currentversion != $latestVersion){
                 $bt[] = [["text"=>"دریافت آخرین نسخه ربات","url"=>"https://github.com/MortezaVaezi2005/TelegramRaffleBot/releases/latest"]];
                 bot('sendMessage', [
                     'chat_id' => $chat->id,
-                    'reply_to_message_id'=>$message->message_id,
                     'text' => "⚠️⚠️نسخه جدید ربات موجود است⚠️⚠️\n\n🟢 ادمین عزیز شما می توانید با مراجعه به صفحه پروژه ربات نسبت به دریافت سورس جدید ربات اقدام نمایید.\n\n💠Developer: @MortezaVaezi_ir",
                     'reply_markup' =>json_encode([
                         'inline_keyboard'=>$bt
