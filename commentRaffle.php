@@ -4,7 +4,6 @@ DEVELOPED BY MortezaVaei
 Telegram Username : @MortezaVaezi_ir,
 Site URL : mortezavaezi.ir
 */
-
 include 'vendor/autoload.php';
 $MadelineProto = new \danog\MadelineProto\API('session.madeline');
 $MadelineProto->start();

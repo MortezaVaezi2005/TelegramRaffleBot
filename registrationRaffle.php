@@ -4,7 +4,6 @@ DEVELOPED BY MortezaVaei
 Telegram Username : @MortezaVaezi_ir,
 Site URL : mortezavaezi.ir
 */
-
 include "tempDatasManager.php";
 $participants = new TempDatasManager("participants.json");
 function getRandomValuesFromArray($array, $count) {
